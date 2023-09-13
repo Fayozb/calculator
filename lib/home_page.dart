@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _addArithmetic(String action) {
+
     setState(() {
       _text = '$_text$action';
     });
