@@ -10,7 +10,7 @@ class CommonButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        minimumSize: Size(90, 60),
+        minimumSize: const Size(90, 60),
         backgroundColor: Colors.deepPurple,
       ),
       onPressed: onTap,
