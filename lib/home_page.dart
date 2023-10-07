@@ -11,7 +11,71 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String _text = '';
-
+  void _addPoint() {
+    if (_text.endsWith('.')) {
+      return;
+    }
+    if (_text.contains('+')) {
+      if (_text.endsWith('+')) {
+        setState(() {
+          _text = '${_text}0.';
+        });
+        return;
+      } else {
+        final String secondNum =
+        _text.substring(_text.indexOf('+') + 1, _text.length);
+        if (secondNum.contains('.')) {
+          return;
+        }
+      }
+    } else if (_text.contains('-')) {
+      if (_text.endsWith('-')) {
+        setState(() {
+          _text = '${_text}0.';
+        });
+        return;
+      } else {
+        final String secondNum =
+        _text.substring(_text.indexOf('-') + 1, _text.length);
+        if (secondNum.contains('.')) {
+          return;
+        }
+      }
+    } else if (_text.contains('*')) {
+      if (_text.endsWith('*')) {
+        setState(() {
+          _text = '${_text}0.';
+        });
+        return;
+      } else {
+        final String secondNum =
+        _text.substring(_text.indexOf('*') + 1, _text.length);
+        if (secondNum.contains('.')) {
+          return;
+        }
+      }
+    } else if (_text.contains('/')) {
+      if (_text.endsWith('/')) {
+        setState(() {
+          _text = '${_text}0.';
+        });
+        return;
+      } else {
+        final String secondNum =
+        _text.substring(_text.indexOf('/') + 1, _text.length);
+        if (secondNum.contains('.')) {
+          return;
+        }
+      }
+    } else {
+      if (_text.contains('.')) {
+        return;
+      }
+    }
+    setState(() {
+      _text = '$_text.';
+    });
+  }
   void _addNumber(int number) {
     setState(() {
       if (_text == '0') {
@@ -21,13 +85,11 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-
   void _addArithmetic(String action) {
     if (_text.contains('+') ||
         _text.contains('-') ||
         _text.contains('*') ||
-        _text.contains('/') ||
-        _text.contains('.')
+        _text.contains('/')
     ) {
       _calculate();
       setState(() {
@@ -42,7 +104,6 @@ class _HomePageState extends State<HomePage> {
 
   void _calculate() {
     if (_text.contains('+')) {
-      /// '784983+4873857
       double firstNumber = double.parse(_text.substring(0, _text.indexOf('+')));
       double? secondNumber = double.tryParse(
           _text.substring(_text.indexOf('+') + 1, _text.length));
@@ -54,11 +115,7 @@ class _HomePageState extends State<HomePage> {
         }
       });
     }
-    else if(_text.contains('.')) {
-      double firstNumber = double.parse(_text.substring(0, _text.indexOf('+')));
-      double? secondNumber = double.tryParse(
-          _text.substring(_text.indexOf('.') + 1, _text.length));
-    }
+
     else if (_text.contains('-')) {
       double firstNumber = double.parse(_text.substring(0, _text.indexOf('-')));
       double? secondNumber =
@@ -228,7 +285,7 @@ class _HomePageState extends State<HomePage> {
                 CommonButton(
                   text: '.',
                   onTap: () {
-                    _addArithmetic('.');
+                    _addPoint();
                   },
                 ),
                 const SizedBox(width: 10),
